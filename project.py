@@ -14,33 +14,33 @@ DBSession = sessionmaker(bind=engine)
 session = DBSession()
 
 
-#JSON APIs to view Restaurant Information
-# @app.route('/store/<int:store_id>/item/JSON')
-# def storeItemJSON(store_id):
-#     store = session.query(Store).filter_by(id = store_id).one()
-#     items = session.query(FashionItem).filter_by(store_id = store_id).all()
-#     return jsonify(FashionItems=[i.serialize for i in items])
+#JSON APIs to view Store Information
+@app.route('/store/<int:store_id>/item/JSON')
+def storeItemJSON(store_id):
+    store = session.query(Store).filter_by(id = store_id).one()
+    items = session.query(FashionItem).filter_by(store_id = store_id).all()
+    return jsonify(FashionItems=[i.serialize for i in items])
 
 
-# @app.route('/store/<int:store_id>/item/<int:item_id>/JSON')
-# def menuItemJSON(store_id, item_id):
-#     Menu_Item = session.query(MenuItem).filter_by(id = menu_id).one()
-#     return jsonify(Menu_Item = Menu_Item.serialize)
+@app.route('/store/<int:store_id>/item/<int:item_id>/JSON')
+def fashionItemJSON(store_id, item_id):
+    Fashion_Item = session.query(FashionItem).filter_by(id = item_id).one()
+    return jsonify(Fashion_Item = Fashion_Item.serialize)
 
-# @app.route('/restaurant/JSON')
-# def restaurantsJSON():
-#     restaurants = session.query(Restaurant).all()
-#     return jsonify(restaurants= [r.serialize for r in restaurants])
+@app.route('/store/JSON')
+def storesJSON():
+    stores = session.query(Store).all()
+    return jsonify(stores= [r.serialize for r in stores])
 
 
-#Show all restaurants
+#Show all stores
 @app.route('/')
 @app.route('/store/')
 def showStores():
   stores = session.query(Store).order_by(asc(Store.name))
   return render_template('stores.html', stores = stores)
 
-#Create a new restaurant
+#Create a new store
 @app.route('/store/new/', methods=['GET','POST'])
 def newStore():
   if request.method == 'POST':
@@ -52,7 +52,7 @@ def newStore():
   else:
       return render_template('newStore.html')
 
-#Edit a restaurant
+#Edit a store
 @app.route('/store/<int:store_id>/edit/', methods = ['GET', 'POST'])
 def editStore(store_id):
   editedStore = session.query(Store).filter_by(id = store_id).one()
@@ -65,7 +65,7 @@ def editStore(store_id):
     return render_template('editStore.html', store = editedStore)
 
 
-#Delete a restaurant
+#Delete a store
 @app.route('/store/<int:store_id>/delete/', methods = ['GET','POST'])
 def deleteStore(store_id):
   storeToDelete = session.query(Store).filter_by(id = store_id).one()
@@ -77,9 +77,9 @@ def deleteStore(store_id):
   else:
     return render_template('deleteStore.html',store = storeToDelete)
 
-#Show a restaurant menu
+#Show a store items
 @app.route('/store/<int:store_id>/')
-# @app.route('/store/<int:store_id>/item/')
+@app.route('/store/<int:store_id>/item/')
 def showItem(store_id):
     store = session.query(Store).filter_by(id = store_id).one()
     items = session.query(FashionItem).filter_by(store_id = store_id).all()
@@ -87,54 +87,52 @@ def showItem(store_id):
      
 
 
-# #Create a new menu item
-# @app.route('/restaurant/<int:restaurant_id>/menu/new/',methods=['GET','POST'])
-# def newMenuItem(restaurant_id):
-#   restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
-#   if request.method == 'POST':
-#       newItem = MenuItem(name = request.form['name'], description = request.form['description'], price = request.form['price'], course = request.form['course'], restaurant_id = restaurant_id)
-#       session.add(newItem)
-#       session.commit()
-#       flash('New Menu %s Item Successfully Created' % (newItem.name))
-#       return redirect(url_for('showMenu', restaurant_id = restaurant_id))
-#   else:
-#       return render_template('newmenuitem.html', restaurant_id = restaurant_id)
+# #Create a new item
+@app.route('/store/<int:store_id>/item/new/',methods=['GET','POST'])
+def newItem(store_id):
+  store = session.query(Store).filter_by(id = store_id).one()
+  if request.method == 'POST':
+      newItem = FashionItem(name = request.form['name'], price = request.form['price'], category = request.form['category'], store_id = store_id)
+      session.add(newItem)
+      session.commit()
+      flash('New Fashion %s Item Successfully Created' % (newItem.name))
+      return redirect(url_for('showItem', store_id = store_id))
+  else:
+      return render_template('newItem.html', store_id = store_id)
 
-# #Edit a menu item
-# @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/edit', methods=['GET','POST'])
-# def editMenuItem(restaurant_id, menu_id):
+# #Edit a item
+@app.route('/store/<int:store_id>/item/<int:item_id>/edit', methods=['GET','POST'])
+def editItem(store_id, item_id):
 
-#     editedItem = session.query(MenuItem).filter_by(id = menu_id).one()
-#     restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
-#     if request.method == 'POST':
-#         if request.form['name']:
-#             editedItem.name = request.form['name']
-#         if request.form['description']:
-#             editedItem.description = request.form['description']
-#         if request.form['price']:
-#             editedItem.price = request.form['price']
-#         if request.form['course']:
-#             editedItem.course = request.form['course']
-#         session.add(editedItem)
-#         session.commit() 
-#         flash('Menu Item Successfully Edited')
-#         return redirect(url_for('showMenu', restaurant_id = restaurant_id))
-#     else:
-#         return render_template('editmenuitem.html', restaurant_id = restaurant_id, menu_id = menu_id, item = editedItem)
+    editedItem = session.query(FashionItem).filter_by(id = item_id).one()
+    store = session.query(Store).filter_by(id = store_id).one()
+    if request.method == 'POST':
+        if request.form['name']:
+            editedItem.name = request.form['name']
+        if request.form['price']:
+            editedItem.price = request.form['price']
+        if request.form['category']:
+            editedItem.category = request.form['category']
+        session.add(editedItem)
+        session.commit() 
+        flash('Fahion Item Successfully Edited')
+        return redirect(url_for('showItem', store_id = store_id))
+    else:
+        return render_template('editItem.html', store_id = store_id, item_id = item_id, item = editedItem)
 
 
-# #Delete a menu item
-# @app.route('/restaurant/<int:restaurant_id>/menu/<int:menu_id>/delete', methods = ['GET','POST'])
-# def deleteMenuItem(restaurant_id,menu_id):
-#     restaurant = session.query(Restaurant).filter_by(id = restaurant_id).one()
-#     itemToDelete = session.query(MenuItem).filter_by(id = menu_id).one() 
-#     if request.method == 'POST':
-#         session.delete(itemToDelete)
-#         session.commit()
-#         flash('Menu Item Successfully Deleted')
-#         return redirect(url_for('showMenu', restaurant_id = restaurant_id))
-#     else:
-#         return render_template('deleteMenuItem.html', item = itemToDelete)
+# #Delete a item
+@app.route('/store/<int:store_id>/item/<int:item_id>/delete', methods = ['GET','POST'])
+def deleteItem(store_id,item_id):
+    store = session.query(Store).filter_by(id = store_id).one()
+    itemToDelete = session.query(FashionItem).filter_by(id = item_id).one() 
+    if request.method == 'POST':
+        session.delete(itemToDelete)
+        session.commit()
+        flash('Fashion Item Successfully Deleted')
+        return redirect(url_for('showItem', store_id = store_id))
+    else:
+        return render_template('deleteItem.html', item = itemToDelete)
 
 
 

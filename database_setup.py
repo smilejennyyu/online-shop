@@ -38,7 +38,7 @@ class FashionItem(Base):
            'name'         : self.name,
            'id'         : self.id,
            'price'         : self.price,
-           'category'         : self.course,
+           'category'         : self.category,
        }
 
 
