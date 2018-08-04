@@ -159,5 +159,10 @@ u }
 .flash li {
 	list-style-type: none;
 	text-align: center;
-
+}
+.login-header{
+	background: aliceblue;
+    height: 100px;
+    text-align: center;
+    top: 50%;
 }

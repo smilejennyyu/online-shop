@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +8,9 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 
 <script src="//apis.google.com/js/platform.js?onload=start"> </script>
+<link href='http://fonts.googleapis.com/css?family=Roboto:400,300,700' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='styles.css') }}">
 
 <!-- END PRE-REQUISITES FOR GOOGLE SIGN IN -->
 
@@ -14,24 +19,42 @@
 
 
 <body>  
-
+  <div class="container">
+    <div class="row top-menu">
+      <div class="col-md-6">
+      </div>
+    </div>
+    <div class="row top-menu">
+      <div class="col-md-10"></div>
+      <div class="col-md-2 text-right"></div>
+    </div>
+    <div class="row divider blue">
+      <div class="col-md-12"></div>
+    </div>
+    <div class="row banner main">
+      <div class="col-md-1"></div>
+      <div class="col-md-11 padding-none">
+        <h1>Login</h1>
+      </div>
+    </div>
 
 <!-- GOOGLE PLUS SIGN IN-->
 
           
-          <div id="signinButton">
-          <span class="g-signin"
-            data-scope="openid email"
-            data-clientid="701876978095-pr3kf3frdpck847fh7plf6hkahpg10jf.apps.googleusercontent.com"
-            data-redirecturi="postmessage"
-            data-accesstype="offline"
-            data-cookiepolicy="single_host_origin"
-            data-callback="signInCallback"
-            data-approvalprompt="force">
-          </span>
-        </div>
+    <div id="signinButton">
+    <span class="g-signin"
+      data-scope="openid email"
+      data-clientid="476857383524-v14ajugl555nkukpk2knf8n06dp89cq0.apps.googleusercontent.com"
+      data-redirecturi="postmessage"
+      data-accesstype="offline"
+      data-cookiepolicy="single_host_origin"
+      data-callback="signInCallback"
+      data-approvalprompt="force">
+    </span>
+  </div>
 
 <div id="result"></div>
+</div>
 
 <script>
 function signInCallback(authResult) {
