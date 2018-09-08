@@ -1,12 +1,12 @@
 {% extends "main.html" %}
 {% block content %}
 {% include "header.html" %}
-	<div class="row top-menu">
+	<div class="row top-page">
 		<div class="col-md-10"></div>
 		<div class="col-md-2 text-right">
 					</div>
 	</div>
-	<div class="row divider blue">
+	<div class="row divider gold">
 		<div class="col-md-12"></div>
 	</div>
 	<div class="row banner main">
@@ -34,7 +34,7 @@
 		<div class="col-md-1"></div>
 		<div class="col-md-10 padding-none">
 			<a href="{{url_for('newStore')}}">
-				<button class="btn btn-default" id="new-restaurant">
+				<button class="btn btn-default" id="new-store">
 					<span class="glyphicon glyphicon-cutlery" aria-hidden="true"></span>Add Store
 				</button>
 			</a>
@@ -45,7 +45,7 @@
 		<a href = "{{url_for('showItem', store_id = store.id)}}">
 			<div class="row">
 				<div class="col-md-1"></div>
-					<div class="col-md-10 restaurant-list">
+					<div class="col-md-10 store-list">
 						<h3>{{store.name}}</h3>
 					</div>
 				<div class="col-md-1"></div>

@@ -9,6 +9,7 @@ h1 {
 	color: #51453B;
 	line-height: 60px;
 	font-weight: 300;
+	text-align:center;
 }
 
 h2 {
@@ -74,15 +75,15 @@ h3 {
 .glyphicon {
 	margin-right: 10px;
 }
-.top-menu {
+.top-page {
 	padding-top: 30px;
 	padding-bottom: 30px;
 }
-.top-menu p {
+.top-page p {
 	margin-bottom: 0;
 	line-height: 16px;
 }
-.top-menu a {
+.top-page a {
 	margin-bottom: 0;
 	line-height: 16px;
 	font-size: 16px;
@@ -92,20 +93,20 @@ h3 {
 .divider {
 	height: 15px;
 }
-.divider.blue {
-	background-color: #42C3C9;
+.divider.gold {
+	background-color: #DAA520;
 }
 .divider.green {
 	background-color: #9FB80A;
 }
 .banner.main {
 	height: 150px;
-	background: url("/static/top-banner.jpg");
+	background: url("/static/banner.png");
 	background-position: right;
 	background-repeat: no-repeat;
 	background-size: cover;
 }
-.banner.menu {
+.banner.fashion {
 	height: 150px;
 	background-color: #E1E17F;
 }
@@ -116,21 +117,21 @@ h3 {
 .banner h1 {
 	margin: 45px 0;
 }
- .restaurant-list {
+ .store-list {
  	background-color: #F0F0F0;
  	padding: 20px;
 u }
- .restaurant-list:hover {
- 	background-color: #e1e17f;
+ .store-list:hover {
+ 	background-color: #DAA520;
  	padding: 20px;
 }
-.menu-item {
+.fashion-item {
 	background: #F0F0F0;
 	padding: 20px;
 	margin: 20px;
 	margin-left: -20px;
 }
-.menu-price {
+.fashion-price {
 	font-weight: 700;
 }
 .creator {
@@ -159,10 +160,4 @@ u }
 .flash li {
 	list-style-type: none;
 	text-align: center;
-}
-.login-header{
-	background: aliceblue;
-    height: 100px;
-    text-align: center;
-    top: 50%;
 }

@@ -20,15 +20,15 @@
 
 <body>  
   <div class="container">
-    <div class="row top-menu">
+    <div class="row top-page">
       <div class="col-md-6">
       </div>
     </div>
-    <div class="row top-menu">
+    <div class="row top-page">
       <div class="col-md-10"></div>
       <div class="col-md-2 text-right"></div>
     </div>
-    <div class="row divider blue">
+    <div class="row divider gold">
       <div class="col-md-12"></div>
     </div>
     <div class="row banner main">
@@ -59,9 +59,9 @@
 <script>
 function signInCallback(authResult) {
   if (authResult['code']) {
-    // Hide the sign-in button now that the user is authorized
+    // Hide the sign-in button when the user is authorized
     $('#signinButton').attr('style', 'display: none');
-    // Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+    // Send the one-time-use code to the server, if the server responds, print out a 'login successful' message to the web page and then redirect back to the main store page
     $.ajax({
       type: 'POST',
       url: '/gconnect?state={{STATE}}',
@@ -69,7 +69,7 @@ function signInCallback(authResult) {
       data: authResult['code'],
       contentType: 'application/octet-stream; charset=utf-8',
       success: function(result) {
-        // Handle or verify the server response if necessary.
+        // Verify the server response if necessary.
         if (result) {
           $('#result').html('Login Successful!</br>'+ result + '</br>Redirecting...')
          setTimeout(function() {
@@ -90,6 +90,6 @@ function signInCallback(authResult) {
 
 <!--END GOOGLE PLUS SIGN IN -->
 
-  </body>
+</body>
 
-  </html>
+</html>

@@ -4,7 +4,7 @@
 	<div class="row divider green">
 		<div class="col-md-12"></div>
 	</div>
-	<div class="row banner menu">
+	<div class="row banner fashion">
 		<div class="col-md-11 col-md-offset-1 padding-none">
 			<h1>Edit {{store.name}}</h1>
 		</div>
@@ -16,12 +16,10 @@
 					<label for="name">Name:</label>
 					<input type ="text" class="form-control" name="name" value="{{store.name }}">
 					<div class="padding-bottom"></div>
-					<button type="submit" class="btn btn-default" id="submit" type="submit">
+					<button type="submit" name= "submit"class="btn btn-default" id="submit" value="submit">
 					<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>Save</button>
-					<a href = '{{url_for('showStores')}}'>
-						<button class="btn btn-default delete">
-						<span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Cancel</button>
-					</a>
+					<button type="submit" name= "submit" class="btn btn-default delete" id="submit" value="cancel">
+					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>Cancel</button>
 				</div>
 			</form>
 		</div>

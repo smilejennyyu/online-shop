@@ -5,7 +5,7 @@
 	<div class="row divider green">
 		<div class="col-md-12"></div>
 	</div>
-	<div class="row banner menu">
+	<div class="row banner fashion">
 		<div class="col-md-11 col-md-offset-1 padding-none">
 			<h1>{{ store.name }}
 			<figure class="creator">
@@ -38,9 +38,9 @@
 				<h2>Tops</h2>
 					{% for i in items %}
 						{% if i.category == 'Tops' %}
-							<div class="menu-item">
+							<div class="fashion-item">
 								<h3>{{i.name}}</h3>
-								<p class="menu-price">{{i.price}}</p>
+								<p class="fashion-price">{{i.price}}</p>
 							</div>
 						{% endif %}
 					{% endfor %}
@@ -49,9 +49,9 @@
 				<h2>Bottoms</h2>
 					{% for i in items %}
 						{% if i.category == 'Bottoms' %}
-						<div class="menu-item">
+						<div class="fashion-item">
 							<h3>{{i.name}}</h3>
-							<p class="menu-price">{{i.price}}</p>
+							<p class="fashion-price">{{i.price}}</p>
 						</div>
 						{% endif %}
 					{% endfor %}
@@ -60,18 +60,18 @@
 				<h2>Jewellery</h2>
 					{% for i in items %}
 						{% if i.category == 'Jewellery' %}
-						<div class="menu-item">
+						<div class="fashion-item">
 							<h3>{{i.name}}</h3>
-							<p class="menu-price">{{i.price}}</p>
+							<p class="fashion-price">{{i.price}}</p>
 						</div>
 						{% endif %}
 					{% endfor %}
 				<h2>Shoes</h2>
 					{% for i in items %}
 						{% if i.category == 'Shoes' %}
-						<div class="menu-item">
+						<div class="fashion-item">
 							<h3>{{i.name}}</h3>
-							<p class="menu-price">{{i.price}}</p>
+							<p class="fashion-price">{{i.price}}</p>
 						</div>
 						{% endif %}
 					{% endfor %}
